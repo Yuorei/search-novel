@@ -41,4 +41,9 @@ async function dbInit(){
 async function dbInsertUser(id,mail,password){
     const user = await User.create({id: id, mail: mail, password: password})
 }
-export {dbInit,dbInsertUser};
+
+async function dbInsertFavorite(id,work_name,url){
+    const favorite = await Favorite.create({id: id, work_name: work_name , url: url})
+}
+
+export {dbInit,dbInsertUser,dbInsertFavorite};
