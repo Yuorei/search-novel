@@ -1,5 +1,6 @@
 import express from 'express';
-const port = 3000;
+import 'dotenv/config'; // このモジュールで.envから環境変数を設定する
+const port = process.env.PORT;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
