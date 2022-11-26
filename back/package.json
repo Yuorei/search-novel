@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "search-novel",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -17,5 +17,17 @@
   "devDependencies": {
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5"
-  }
+  },
+  "description": "",
+  "main": "sever.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yuorei/search-novel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yuorei/search-novel/issues"
+  },
+  "homepage": "https://github.com/Yuorei/search-novel#readme"
 }
