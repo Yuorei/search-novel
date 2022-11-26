@@ -38,4 +38,7 @@ async function dbInit(){
     await Favorite.sync()
 }
 
-export {dbInit};
+async function dbInsertUser(id,mail,password){
+    const user = await User.create({id: id, mail: mail, password: password})
+}
+export {dbInit,dbInsertUser};
