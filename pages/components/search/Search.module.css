@@ -1,0 +1,8 @@
+.select {
+  background-color: var(--color-light-gray);
+  background-image: url("/chevron-down-solid.svg");
+  background-position: right 1rem center;
+  background-repeat: no-repeat;
+  background-size: 1em 1em;
+  appearance: none;
+}
