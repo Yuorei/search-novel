@@ -1,5 +1,9 @@
 import { Sequelize, DataTypes } from 'sequelize';
 import 'dotenv/config'; // このモジュールで.envから環境変数を設定する
+console.log(9999999);
+
+let user ;
+let favorite;
 
 async function dbInit(){
     const sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.USER, process.env.PASSWORD, {
@@ -40,14 +44,28 @@ async function dbInit(){
 
     await User.sync()
     await Favorite.sync()
+    user=User
+    favorite=Favorite
 }
 
 async function dbInsertUser(id,mail,password){
-    const user = await User.create({id: id, mail: mail, password: password})
+     await user.create({id: id, mail: mail, password: password})
+}
+
+async function dbSerectUser(mail,password){
+    user.findAll({
+        where: {
+          mail: mail,
+          password: password
+        }
+      });
+      // SELECT * FROM User WHERE mail = mail AND password = password;
+      return user.id;
 }
 
 async function dbInsertFavorite(id,work_name,url){
-    const favorite = await Favorite.create({id: id, work_name: work_name , url: url})
+    await favorite.create({id: id, work_name: work_name , url: url})
 }
 
-export {dbInit,dbInsertUser,dbInsertFavorite};
+
+export {dbInsertUser,dbSerectUser,dbInsertFavorite};
