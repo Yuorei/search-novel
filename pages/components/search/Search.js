@@ -193,7 +193,21 @@ function Search() {
                 >
                   {i === 0 ? "" : `${novel.title}`}
                 </Link>
-                <p className="my-4 color-dark-gray">{novel.story}</p>
+                <p className="text-gray-400 text-sm my-3 underline">
+                  <Link href={`https://mypage.syosetu.com/${novel.userid}`}>
+                    {" "}
+                    {i === 0 ? "" : `${novel.writer}`}
+                  </Link>
+                </p>
+                <p className="text-gray-400 text-lg ">
+                  <Link
+                    href={`https://db.narou.fun/works/${novel.ncode}`}
+                    className={`${styles.link}`}
+                  >
+                    {i === 0 ? "" : `読む`}
+                  </Link>
+                </p>
+                <p className="mt-2 mb-4 color-dark-gray">{novel.story}</p>
               </div>
             ))
           : ""}
