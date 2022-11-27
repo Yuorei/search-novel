@@ -9,7 +9,9 @@ async function dbInit(){
 
     const User = sequelize.define('User', {  // Userテーブル
         id: {
-            type: DataTypes.INTEGER  // 整数型
+            type: DataTypes.INTEGER,  // 整数型
+            autoIncrement: true,
+            primaryKey: true
             },
         mail: {
             type: DataTypes.STRING,  // 文字列型
@@ -23,7 +25,9 @@ async function dbInit(){
 
     const Favorite = sequelize.define('Favorite', {  // Favoriteテーブル
         id: {
-            type: DataTypes.INTEGER  // 整数型
+            type: DataTypes.INTEGER,  // 整数型
+            autoIncrement: true,
+            primaryKey: true
             },
         work_name: {
             type: DataTypes.STRING,  // 文字列型
