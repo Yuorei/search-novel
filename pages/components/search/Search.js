@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faL, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import React, { useEffect, useState } from "react";
+import { faMagnifyingGlass, faAward } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
 import styles from "./Search.module.css";
 import axios from "axios";
 import jsonpAdaper from "axios-jsonp";
@@ -195,7 +195,6 @@ function Search() {
                 </Link>
                 <p className="text-gray-400 text-sm my-3 underline">
                   <Link href={`https://mypage.syosetu.com/${novel.userid}`}>
-                    {" "}
                     {i === 0 ? "" : `${novel.writer}`}
                   </Link>
                 </p>
@@ -208,6 +207,14 @@ function Search() {
                   </Link>
                 </p>
                 <p className="mt-2 mb-4 color-dark-gray">{novel.story}</p>
+                <p className={`text-gray-500 text-lg`}>
+                  {i === 0 ? (
+                    ""
+                  ) : (
+                    <FontAwesomeIcon icon={faAward} className="mr-2" />
+                  )}
+                  {i === 0 ? "" : `総合ポイント：${novel.global_point}`}
+                </p>
               </div>
             ))
           : ""}
