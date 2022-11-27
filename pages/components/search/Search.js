@@ -167,9 +167,13 @@ function Search() {
         )}
         {getComplete && searchBtnClick ? (
           genre === "" ? (
-            <p className="text-xl">すべて：ジャンル検索結果</p>
+            <p className="text-xl py-4 text-center text-white bg-green-600 rounded">
+              すべて：ジャンル検索結果
+            </p>
           ) : (
-            <p className="text-xl">{genre}：ジャンル検索結果</p>
+            <p className="text-xl py-4 text-center text-white bg-green-600 rounded">
+              {genre}：ジャンル検索結果
+            </p>
           )
         ) : (
           ""
