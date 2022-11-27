@@ -1,17 +1,14 @@
 import { Sequelize, DataTypes } from 'sequelize';
 import 'dotenv/config'; // このモジュールで.envから環境変数を設定する
-console.log(9999999)
 
 let user ;
 let favorite;
 
 async function dbInit(){
     const sequelize = new Sequelize(process.env.DATABASE_NAME, 'root', process.env.PASSWORD, {
-        //host: process.env.HOST,
         host: process.env.HOST,
         dialect: process.env.SQL,
     })
-    console.log(process.env.DATABASE_NAME)
 
     const User = sequelize.define('User', {  // Userテーブル
         id: {
