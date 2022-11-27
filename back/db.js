@@ -52,14 +52,14 @@ async function dbInsertUser(mail,password){
 }
 
 async function dbSerectUser(mail,password){
-    user.findAll({
+    user.findOne({
         where: {
           mail: mail,
           password: password
         }
       });
       // SELECT * FROM User WHERE mail = mail AND password = password;
-      console.log(user.id)
+      console.log(user.id)//todo undefind解決する
       return user.id;
 }
 
