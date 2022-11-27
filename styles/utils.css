@@ -1,0 +1,22 @@
+:root {
+  --color-main: #318dd9;
+  --color-accent: #ff7578;
+  --color-light-gray: #eaf0f5;
+  --color-dark-gray: #404b5c;
+}
+
+/* 背景色 */
+.bg-main {
+  background-color: var(--color-main);
+}
+.bg-accent {
+  background-color: var(--color-accent);
+}
+
+/* 文字色 */
+.color-light-gray {
+  color: var(--color-light-gray);
+}
+.color-dark-gray {
+  color: var(--color-dark-gray);
+}
