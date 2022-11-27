@@ -18,3 +18,8 @@
 .search_text {
   margin-left: 8px;
 }
+
+.link {
+  color: #4299e1;
+  border-bottom: 1px solid #4299e1;
+}

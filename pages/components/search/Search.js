@@ -1,40 +1,32 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faL, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import styles from "./Search.module.css";
 import axios from "axios";
 import jsonpAdaper from "axios-jsonp";
+import Link from "next/link";
 
 function Search() {
   const [option, setOption] = useState("");
-  const [switchOption, setSwitchOption] = useState(false);
   const [searchBtnClick, setSearchBtnClick] = useState(false);
   const [getComplete, setGetComplete] = useState(false);
-  const [titles, setTitles] = useState("");
-
-  let titleArray = [];
+  const [response, setResponse] = useState();
+  const [genre, setGenre] = useState("");
 
   const getGiggenreData = async () => {
-    titleArray = [];
-
     const API_URL = `https://api.syosetu.com/novelapi/api/?out=jsonp&biggenre=${option}`;
     try {
       const response = await (
         await axios.get(API_URL, { adapter: jsonpAdaper })
       ).data;
       setGetComplete(true);
-      response.map((novel) => titleArray.push(novel.title));
+      setResponse(response);
       return response;
     } catch (err) {
       console.log(err);
+      setGetComplete(false);
     }
   };
-
-  useEffect(() => {
-    setTitles(titleArray);
-  }, [switchOption]);
-
-  getGiggenreData();
 
   return (
     <section className={`flex flex-col justify-center ${styles.section}`}>
@@ -49,10 +41,14 @@ function Search() {
               name="biggenre"
               onChange={(e) => {
                 setOption(e.target.value);
-                setSwitchOption((prev) => !prev);
                 setSearchBtnClick(false);
-                getGiggenreData();
+                setResponse();
+                setGetComplete(false);
+                setGenre(
+                  e.target.options[e.target.options.selectedIndex].textContent
+                );
               }}
+              defaultValue="0"
             >
               <option disabled="disabled" value="0" name="biggenre">
                 ジャンルを絞る
@@ -89,20 +85,33 @@ function Search() {
           </div>
         </div>
       </section>
-      <section className="mt-10">
+      <section className="my-10">
+        {getComplete === false && searchBtnClick === true ? (
+          <p className="text-xl">検索中...</p>
+        ) : (
+          ""
+        )}
+        {getComplete && searchBtnClick ? (
+          genre === "" ? (
+            <p className="text-xl">すべて：ジャンル検索結果</p>
+          ) : (
+            <p className="text-xl">{genre}：ジャンル検索結果</p>
+          )
+        ) : (
+          ""
+        )}
         {getComplete || searchBtnClick
-          ? titles.map((title, i) => (
+          ? response?.map((novel, i) => (
               <p className="text-lg my-10 w-full" key={i}>
-                {i === 0 ? "" : `${i}: ${title}`}
+                <Link
+                  href={`https://db.narou.fun/works/${novel.ncode}`}
+                  className={`${styles.link}`}
+                >
+                  {i === 0 ? "" : `${i}: ${novel.title}`}
+                </Link>
               </p>
             ))
           : ""}
-        {/* {getComplete || searchBtnClick
-          ? async () =>
-              await getGiggenreData().then((result) =>
-                result.map((novel) => <p>{novel.title}</p>)
-              )
-          : ""} */}
       </section>
     </section>
   );
