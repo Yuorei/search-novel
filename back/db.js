@@ -47,8 +47,8 @@ async function dbInit(){
     favorite=Favorite
 }
 
-async function dbInsertUser(id,mail,password){
-     await user.create({id: id, mail: mail, password: password})
+async function dbInsertUser(mail,password){
+    await user.create({mail: mail, password: password})
 }
 
 async function dbSerectUser(mail,password){

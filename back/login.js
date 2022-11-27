@@ -1,4 +1,5 @@
-import{dbSerectUser} from 'db.js'
+import{dbSerectUser,dbInsertUser} from './db.js'
+
 function login(mail,password){
     var id=dbSerectUser(mail,password)
     if(id!=null){
@@ -7,4 +8,8 @@ function login(mail,password){
     //間違っている場合は0とする
     return 0;
 }
-export {login};
+
+function register(mail,password){
+    dbInsertUser(mail,password)
+}
+export {login,register};
