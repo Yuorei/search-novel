@@ -13,8 +13,13 @@ function Search() {
   const [response, setResponse] = useState();
   const [genre, setGenre] = useState("");
 
-  const getGiggenreData = async () => {
-    const API_URL = `https://api.syosetu.com/novelapi/api/?out=jsonp&biggenre=${option}`;
+  const getGiggenreData = async (option) => {
+    let API_URL;
+    if (1 <= option <= 99) {
+      API_URL = `https://api.syosetu.com/novelapi/api/?out=jsonp&biggenre=${option}`;
+    } else if (101 <= option <= 9999) {
+      API_URL = `https://api.syosetu.com/novelapi/api/?out=jsonp&genre=${option}`;
+    }
     try {
       const response = await (
         await axios.get(API_URL, { adapter: jsonpAdaper })
@@ -38,7 +43,7 @@ function Search() {
           <div className="flex gap-4 mx-auto">
             <select
               className={`color-dark-gray px-5 py-3 w-full rounded ${styles.select}`}
-              name="biggenre"
+              name="genre"
               onChange={(e) => {
                 setOption(e.target.value);
                 setSearchBtnClick(false);
@@ -50,33 +55,102 @@ function Search() {
               }}
               defaultValue="0"
             >
-              <option disabled="disabled" value="0" name="biggenre">
+              <option disabled="disabled" value="0" name="genre">
                 ジャンルを絞る
               </option>
-              <option value="" name="biggenre">
+              <option value="" name="genre">
                 すべて
               </option>
-              <option value="1" name="biggenre">
+              <option disabled="disabled" name="genre">
+                大ジャンル
+              </option>
+              <option value="1" name="genre">
                 恋愛
               </option>
-              <option value="2" name="biggenre">
+              <option value="2" name="genre">
                 ファンタジー
               </option>
-              <option value="3" name="biggenre">
+              <option value="3" name="genre">
                 文芸
               </option>
-              <option value="4" name="biggenre">
+              <option value="4" name="genre">
                 SF
               </option>
-              <option value="99" name="biggenre">
+              <option value="99" name="genre">
                 その他
+              </option>
+              <option disabled="disabled" name="genre">
+                詳細ジャンル
+              </option>
+              <option value="101" name="genre">
+                異世界（恋愛）
+              </option>
+              <option value="102" name="genre">
+                現実世界（恋愛）
+              </option>
+              <option value="201" name="genre">
+                ハイファンタジー（ファンタジー）
+              </option>
+              <option value="202" name="genre">
+                ローファンタジー（ファンタジー）
+              </option>
+              <option value="301" name="genre">
+                純文学（文学）
+              </option>
+              <option value="302" name="genre">
+                ヒューマンドラマ（文学）
+              </option>
+              <option value="303" name="genre">
+                歴史（文芸）
+              </option>
+              <option value="304" name="genre">
+                推理（文芸）
+              </option>
+              <option value="305" name="genre">
+                ホラー（文芸）
+              </option>
+              <option value="306" name="genre">
+                アクション（文芸）
+              </option>
+              <option value="307" name="genre">
+                コメディー（文芸）
+              </option>
+              <option value="401" name="genre">
+                VRゲーム（SF）
+              </option>
+              <option value="402" name="genre">
+                宇宙（SF）
+              </option>
+              <option value="403" name="genre">
+                空想科学（SF）
+              </option>
+              <option value="404" name="genre">
+                パニック（SF）
+              </option>
+              <option value="9801" name="genre">
+                ノンジャンル（ノンジャンル）
+              </option>
+              <option value="9901" name="genre">
+                童話（その他）
+              </option>
+              <option value="9902" name="genre">
+                詩（その他）
+              </option>
+              <option value="9903" name="genre">
+                エッセイ（その他）
+              </option>
+              <option value="9904" name="genre">
+                リプレイ（その他）
+              </option>
+              <option value="9999" name="genre">
+                その他（その他）
               </option>
             </select>
             <button
               className="bg-accent block p-2 w-48 rounded text-white"
               onClick={() => {
                 setSearchBtnClick(true);
-                getGiggenreData();
+                getGiggenreData(option);
               }}
             >
               <FontAwesomeIcon icon={faMagnifyingGlass} />
