@@ -180,14 +180,21 @@ function Search() {
         )}
         {getComplete || searchBtnClick
           ? response?.map((novel, i) => (
-              <p className="text-lg my-10 w-full" key={i}>
+              <div
+                className={`${
+                  i !== 0 ? `text-lg my-10 w-full px-8 py-4 ${styles.card}` : ""
+                }`}
+                key={i}
+              >
+                {i === 0 ? "" : <p className="my-4">{genre}</p>}
                 <Link
                   href={`https://db.narou.fun/works/${novel.ncode}`}
-                  className={`${styles.link}`}
+                  className={`text-xl ${styles.link}`}
                 >
-                  {i === 0 ? "" : `${i}: ${novel.title}`}
+                  {i === 0 ? "" : `${novel.title}`}
                 </Link>
-              </p>
+                <p className="my-4 color-dark-gray">{novel.story}</p>
+              </div>
             ))
           : ""}
       </section>
